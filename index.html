@@ -160,7 +160,104 @@
         font-weight: bold;
         color: #fff;
     }
+
+    /* Estilos para o Carrossel (Slider) */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden; /* Garante que as imagens que não estão visíveis fiquem escondidas */
+      border-radius: 4px; /* Mantém o border-radius do card */
+      margin-bottom: 16px; /* Espaçamento entre a imagem e o título */
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out; /* Suaviza a transição das imagens */
+    }
+
+    .carousel-images img {
+      width: 100%;
+      height: 100%; /* Garante que a imagem ocupe 100% da altura do container */
+      object-fit: cover; /* Mantém a proporção da imagem e corta se necessário */
+      flex-shrink: 0; /* Impede que as imagens encolham */
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      z-index: 5; /* Garante que os botões fiquem acima das imagens */
+      border-radius: 50%;
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
   </style>
+
+  <script>
+    // Função para inicializar o carrossel
+    function initCarousel(carouselId) {
+      const carouselContainer = document.getElementById(carouselId);
+      if (!carouselContainer) return; // Sai se o elemento não existir
+
+      const carouselImagesWrapper = carouselContainer.querySelector('.carousel-images');
+      const images = carouselImagesWrapper.querySelectorAll('img');
+      const prevButton = carouselContainer.querySelector('.carousel-button.prev');
+      const nextButton = carouselContainer.querySelector('.carousel-button.next');
+
+      let currentIndex = 0;
+      const totalImages = images.length;
+
+      // Se houver apenas uma imagem, esconde os botões de navegação
+      if (totalImages <= 1) {
+        if (prevButton) prevButton.style.display = 'none';
+        if (nextButton) nextButton.style.display = 'none';
+        return; // Sai da função se não precisar de carrossel
+      }
+
+      function updateCarousel() {
+        carouselImagesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      if (prevButton) {
+        prevButton.addEventListener('click', () => {
+          currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
+          updateCarousel();
+        });
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener('click', () => {
+          currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+          updateCarousel();
+        });
+      }
+
+      // Opcional: Auto-play do carrossel (descomente se quiser)
+      // setInterval(() => {
+      //   currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
+      //   updateCarousel();
+      // }, 5000); // Muda a cada 5 segundos
+    }
+
+    // Inicializa os carrosséis quando a página carregar
+    document.addEventListener('DOMContentLoaded', () => {
+      initCarousel('grumetCarousel'); // ID do carrossel do primeiro produto (Grumet)
+      initCarousel('tresXumCarousel'); // ID do carrossel do segundo produto (3x1)
+    });
+  </script>
+
 </head>
 <body>
 
@@ -219,14 +316,22 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
         <div class="produto-card p-6 rounded-lg">
-          <img src="modelo1.jpg" alt="Cordão Corrente 3mm Grumet" class="w-full mb-4 rounded">
+          <div id="grumetCarousel" class="carousel-container h-64"> <div class="carousel-images h-full">
+              <img src="IMG_20250614_144709_415.jpg" alt="Cordão Corrente 3mm Grumet - Vista Geral" class="w-full h-full object-cover">
+              <img src="IMG_20250614_144708_300.jpg" alt="Cordão Corrente 3mm Grumet - Detalhe Fecho" class="w-full h-full object-cover">
+            </div>
+            <button class="carousel-button prev">&#10094;</button> <button class="carousel-button next">&#10095;</button> </div>
           <h4 class="text-2xl font-bold mb-2">Cordão Corrente 3mm Grumet</h4>
           <p class="text-green-400 text-xl mb-4">R$ 54,00</p>
           <a href="https://wa.me/p/10080488868695764/554792593526" target="_blank" class="botao">Comprar via WhatsApp</a>
         </div>
 
         <div class="produto-card p-6 rounded-lg">
-          <img src="modelo2.jpg" alt="Cordão Corrente 3mm 3x1" class="w-full mb-4 rounded">
+          <div id="tresXumCarousel" class="carousel-container h-64"> <div class="carousel-images h-full">
+              <img src="IMG_20250614_144705_740.jpg" alt="Cordão Corrente 3mm 3x1 - Vista Geral" class="w-full h-full object-cover">
+              <img src="IMG_20250614_144707_068.jpg" alt="Cordão Corrente 3mm 3x1 - Detalhe Fecho" class="w-full h-full object-cover">
+            </div>
+            <button class="carousel-button prev">&#10094;</button> <button class="carousel-button next">&#10095;</button> </div>
           <h4 class="text-2xl font-bold mb-2">Cordão Corrente 3mm 3x1</h4>
           <p class="text-green-400 text-xl mb-4">R$ 54,00</p>
           <a href="https://wa.me/p/24065307006398897/554792593526" target="_blank" class="botao">Comprar via WhatsApp</a>
@@ -234,9 +339,9 @@
       </div>
 
       <div class="mt-16 text-center space-y-3 text-gray-400">
-        <p class="text-2xl">Anéis - <span class="text-red-500">Em breve</span></p>
-        <p class="text-2xl">Pulseiras - <span class="text-red-500">Em breve</span></p>
-        <p class="text-2xl">Brincos - <span class="text-red-500">Em breve</span></p>
+        <p class="text-2xl">Anéis - <span class="text-red-500">Não temos no momento</span></p>
+        <p class="text-2xl">Pulseiras - <span class="text-red-500">Não temos no momento</span></p>
+        <p class="text-2xl">Brincos - <span class="text-red-500">Não temos no momento</span></p>
       </div>
     </section>
 
@@ -308,4 +413,4 @@
   </footer>
 
 </body>
-            </html>
+</html>
