@@ -4,19 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Suzena Pratas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
+    /* ****************************************************
+       * IMPORTANTE: Para as fontes personalizadas funcionarem,
+       * você precisa ter os arquivos (Sticky Pops.otf, PunkRocker_S_Demo.otf)
+       * na mesma pasta do seu arquivo HTML.
+       * Considere converter para .woff e .woff2 para melhor performance web.
+       ****************************************************
+    */
+
+    /* Fonte Sticky Pops para nomes de produtos e contato */
+    @font-face {
+      font-family: 'Sticky Pops';
+      src: url('Sticky Pops.otf') format('opentype'); /* Use o nome exato do arquivo */
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* Fonte PunkRocker_S_Demo para títulos e números */
+    @font-face {
+      font-family: 'PunkRocker Demo'; /* Dando um nome mais simples para usar no CSS */
+      src: url('PunkRocker_S_Demo.otf') format('opentype'); /* Use o nome exato do arquivo */
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       background-color: #000;
       color: #fff;
-      font-family: 'Montserrat', Arial, sans-serif; /* Aplica a fonte Montserrat */
+      font-family: Arial, sans-serif; /* Usando uma fonte fallback geral, se as outras falharem */
     }
+
+    /* Aplica PunkRocker_S_Demo para títulos */
+    h1, h2, h3, h4 {
+      font-family: 'PunkRocker Demo', Arial, sans-serif;
+    }
+
+    /* Aplica Sticky Pops para nomes de produtos e para a seção de contato */
+    .produto-card h4, /* Nome do produto no card */
+    #contato p,      /* Parágrafos de contato (telefone, instagram) */
+    #contato h3      /* Título da seção de contato */
+    {
+      font-family: 'Sticky Pops', Arial, sans-serif;
+    }
+
+    /* Estilos gerais */
     header {
       background-color: #111;
     }
@@ -27,12 +63,12 @@
     nav a:hover {
       color: #ccc;
     }
-    .produto-card, .categoria-card { /* Adicionado .categoria-card */
+    .produto-card, .categoria-card {
       background-color: #1a1a1a;
       border: 1px solid #333;
       transition: transform 0.3s;
     }
-    .produto-card:hover, .categoria-card:hover { /* Adicionado .categoria-card */
+    .produto-card:hover, .categoria-card:hover {
       transform: scale(1.05);
     }
     .botao {
@@ -60,17 +96,17 @@
 
     /* Estilos para o novo banner principal */
     .hero-section {
-      background-image: url('banner-principal.jpg'); /* Use o nome da sua nova imagem de banner */
-      background-size: cover; /* Faz a imagem cobrir toda a área */
-      background-position: center; /* Centraliza a imagem */
-      height: 70vh; /* Altura do banner (70% da altura da viewport) */
+      background-image: url('banner-principal.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para o texto para melhor leitura */
-      color: #fff; /* Cor do texto no banner */
-      position: relative; /* Para posicionar o overlay */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      color: #fff;
+      position: relative;
     }
 
     .hero-overlay {
@@ -79,13 +115,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4); /* Escurece a imagem para o texto se destacar */
+      background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
     .hero-content {
       position: relative;
-      z-index: 2; /* Garante que o conteúdo fique acima do overlay */
+      z-index: 2;
     }
 
     /* Estilos para os depoimentos */
@@ -114,13 +150,13 @@
     }
     .categoria-card img {
         width: 100%;
-        height: 180px; /* Altura fixa para as imagens das categorias */
-        object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+        height: 180px;
+        object-fit: cover;
         border-radius: 4px;
         margin-bottom: 12px;
     }
     .categoria-card h4 {
-        font-size: 1.5rem; /* text-2xl */
+        font-size: 1.5rem;
         font-weight: bold;
         color: #fff;
     }
@@ -134,7 +170,8 @@
       <nav class="space-x-6">
         <a href="#home">Início</a>
         <a href="#produtos">Produtos</a>
-        <a href="#categorias">Categorias</a> <a href="#depoimentos">Depoimentos</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#depoimentos">Depoimentos</a>
         <a href="#contato">Contato</a>
       </nav>
     </div>
@@ -160,7 +197,7 @@
           <a href="#" class="botao text-sm">Ver Anéis</a>
         </div>
         <div class="categoria-card">
-          <img src="placeholder-correntes.jpg" alt="Correntes de Prata" class="w-full mb-4 rounded">
+          <img src="categoria-correntes.jpg" alt="Correntes de Prata" class="w-full mb-4 rounded">
           <h4 class="text-2xl font-bold mb-2">Correntes</h4>
           <a href="#" class="botao text-sm">Ver Correntes</a>
         </div>
@@ -262,7 +299,7 @@
             <i class="fab fa-whatsapp"></i>
           </a>
         </div>
-        <p class="text-sm">E-mail: suzenapratas@gmail.com <br> Telefone: (47) 99259-3526</p>
+        <p class="text-sm">E-mail: seu_email@example.com <br> Telefone: (47) 99259-3526</p>
       </div>
     </div>
     <div class="text-center mt-8 text-sm text-gray-500">
@@ -271,4 +308,4 @@
   </footer>
 
 </body>
-  </html>
+            </html>
