@@ -203,6 +203,19 @@
     .carousel-button.next {
       right: 10px;
     }
+
+    /* Estilo para o Anúncio de Oferta */
+    .oferta-banner {
+      background-color: #FF0000; /* Vermelho vibrante para chamar atenção */
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      font-weight: bold;
+      font-size: 1.5rem; /* Aumenta o tamanho da fonte */
+      position: relative; /* Para garantir que o z-index funcione se precisar */
+      z-index: 9; /* Acima de outros elementos, mas abaixo do header fixo se este tiver z-index maior */
+      margin-top: 80px; /* Para que apareça abaixo do header fixo (pt-24 no main) */
+    }
   </style>
 
   <script>
@@ -274,9 +287,10 @@
     </div>
   </header>
 
-  <main class="pt-24">
-
-    <section id="home" class="hero-section">
+  <section class="oferta-banner" style="margin-top: 80px;">
+    <p>⚡️ OFERTA RELÂMPAGO: 2 PEÇAS POR R$79,99! ⚡️</p>
+  </section>
+  <main class="pt-0"> <section id="home" class="hero-section">
       <div class="hero-overlay"></div>
       <div class="hero-content text-center">
         <h2 class="text-5xl md:text-6xl font-bold mb-4">Brilhe com Atitude!</h2>
