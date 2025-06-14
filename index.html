@@ -1,12 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Suzena Pratas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif; /* Aplica a fonte Montserrat */
+    }
+    header {
+      background-color: #111;
+    }
+    nav a {
+      color: #fff;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #ccc;
+    }
+    .produto-card, .categoria-card { /* Adicionado .categoria-card */
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      transition: transform 0.3s;
+    }
+    .produto-card:hover, .categoria-card:hover { /* Adicionado .categoria-card */
+      transform: scale(1.05);
+    }
+    .botao {
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      transition: background 0.3s;
+    }
+    .botao:hover {
+      background-color: #ccc;
+    }
+    footer {
+      background-color: #111;
+      color: #888;
+    }
+    footer a {
+        color: #fff;
+        transition: color 0.3s;
+    }
+    footer a:hover {
+        color: #ccc;
+    }
+
+    /* Estilos para o novo banner principal */
+    .hero-section {
+      background-image: url('banner-principal.jpg'); /* Use o nome da sua nova imagem de banner */
+      background-size: cover; /* Faz a imagem cobrir toda a área */
+      background-position: center; /* Centraliza a imagem */
+      height: 70vh; /* Altura do banner (70% da altura da viewport) */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para o texto para melhor leitura */
+      color: #fff; /* Cor do texto no banner */
+      position: relative; /* Para posicionar o overlay */
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4); /* Escurece a imagem para o texto se destacar */
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2; /* Garante que o conteúdo fique acima do overlay */
+    }
+
+    /* Estilos para os depoimentos */
+    .depoimento-card {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      padding: 24px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .depoimento-card p {
+      font-style: italic;
+      margin-bottom: 16px;
+      color: #ccc;
+    }
+    .depoimento-card .nome {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    /* Estilos para o card de categoria */
+    .categoria-card {
+        padding: 16px;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .categoria-card img {
+        width: 100%;
+        height: 180px; /* Altura fixa para as imagens das categorias */
+        object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+        border-radius: 4px;
+        margin-bottom: 12px;
+    }
+    .categoria-card h4 {
+        font-size: 1.5rem; /* text-2xl */
+        font-weight: bold;
+        color: #fff;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,31 +134,65 @@
       <nav class="space-x-6">
         <a href="#home">Início</a>
         <a href="#produtos">Produtos</a>
+        <a href="#categorias">Categorias</a> <a href="#depoimentos">Depoimentos</a>
         <a href="#contato">Contato</a>
       </nav>
     </div>
   </header>
 
   <main class="pt-24">
-    <section id="home" class="text-center py-20">
-      <h2 class="text-5xl font-bold mb-6">Pratas com atitude</h2>
-      <p class="text-xl text-gray-400">Correntes, anéis e muito mais com qualidade 925</p>
+
+    <section id="home" class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content text-center">
+        <h2 class="text-5xl md:text-6xl font-bold mb-4">Brilhe com Atitude!</h2>
+        <p class="text-xl md:text-2xl text-gray-200 mb-8">Descubra a coleção que redefine seu estilo.</p>
+        <a href="#produtos" class="botao text-lg md:text-xl">Explorar Produtos</a>
+      </div>
+    </section>
+
+    <section id="categorias" class="py-16 max-w-6xl mx-auto px-4">
+      <h3 class="text-4xl font-semibold mb-12 text-center">Nossas Categorias</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="categoria-card">
+          <img src="placeholder-aneis.jpg" alt="Anéis de Prata" class="w-full mb-4 rounded">
+          <h4 class="text-2xl font-bold mb-2">Anéis</h4>
+          <a href="#" class="botao text-sm">Ver Anéis</a>
+        </div>
+        <div class="categoria-card">
+          <img src="placeholder-correntes.jpg" alt="Correntes de Prata" class="w-full mb-4 rounded">
+          <h4 class="text-2xl font-bold mb-2">Correntes</h4>
+          <a href="#" class="botao text-sm">Ver Correntes</a>
+        </div>
+        <div class="categoria-card">
+          <img src="placeholder-pulseiras.jpg" alt="Pulseiras de Prata" class="w-full mb-4 rounded">
+          <h4 class="text-2xl font-bold mb-2">Pulseiras</h4>
+          <a href="#" class="botao text-sm">Ver Pulseiras</a>
+        </div>
+        <div class="categoria-card">
+          <img src="placeholder-brincos.jpg" alt="Brincos de Prata" class="w-full mb-4 rounded">
+          <h4 class="text-2xl font-bold mb-2">Brincos</h4>
+          <a href="#" class="botao text-sm">Ver Brincos</a>
+        </div>
+      </div>
     </section>
 
     <section id="produtos" class="py-16 max-w-6xl mx-auto px-4">
       <h3 class="text-4xl font-semibold mb-12 text-center">Nossos Modelos</h3>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
         <div class="produto-card p-6 rounded-lg">
-          <img src="modelo1.jpg" alt="Corrente prata grumet" class="w-full mb-4 rounded">
+          <img src="modelo1.jpg" alt="Cordão Corrente 3mm Grumet" class="w-full mb-4 rounded">
           <h4 class="text-2xl font-bold mb-2">Cordão Corrente 3mm Grumet</h4>
           <p class="text-green-400 text-xl mb-4">R$ 54,00</p>
-          <a href="https://wa.me/5547992593526" target="_blank" class="botao">Comprar via WhatsApp</a>
+          <a href="https://wa.me/p/10080488868695764/554792593526" target="_blank" class="botao">Comprar via WhatsApp</a>
         </div>
+
         <div class="produto-card p-6 rounded-lg">
-          <img src="modelo2.jpg" alt="Corrente prata 3x1" class="w-full mb-4 rounded">
+          <img src="modelo2.jpg" alt="Cordão Corrente 3mm 3x1" class="w-full mb-4 rounded">
           <h4 class="text-2xl font-bold mb-2">Cordão Corrente 3mm 3x1</h4>
           <p class="text-green-400 text-xl mb-4">R$ 54,00</p>
-          <a href="https://wa.me/5547992593526" target="_blank" class="botao">Comprar via WhatsApp</a>
+          <a href="https://wa.me/p/24065307006398897/554792593526" target="_blank" class="botao">Comprar via WhatsApp</a>
         </div>
       </div>
 
@@ -48,6 +200,27 @@
         <p class="text-2xl">Anéis - <span class="text-red-500">Em breve</span></p>
         <p class="text-2xl">Pulseiras - <span class="text-red-500">Em breve</span></p>
         <p class="text-2xl">Brincos - <span class="text-red-500">Em breve</span></p>
+      </div>
+    </section>
+
+    <section id="depoimentos" class="py-16 max-w-6xl mx-auto px-4">
+      <h3 class="text-4xl font-semibold mb-12 text-center">O que nossos clientes dizem</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="depoimento-card">
+          <p>"Eu simplesmente amei meu colar de prata! O brilho é lindo e a qualidade é excelente. Sem falar no atendimento, que foi super atencioso. Com certeza vou comprar de novo!"</p>
+          <span class="nome">- Maria Fernanda - Blumenau/SC</span>
+        </div>
+
+        <div class="depoimento-card">
+          <p>"Estava procurando uma corrente de prata para presentear meu irmão e encontrei na Suzena Pratas. O produto chegou rápido, muito bem embalado e o acabamento é perfeito. Recomendo demais!"</p>
+          <span class="nome">- João Pedro - Indaial/SC</span>
+        </div>
+
+        <div class="depoimento-card">
+          <p>"Já comprei duas vezes com a Suzena e sempre fico encantada. As peças são delicadas e com ótimo preço. Além disso, o atendimento pelo WhatsApp foi super rápido e tiraram todas as minhas dúvidas."</p>
+          <span class="nome">- Camila Souza - Timbó/SC</span>
+        </div>
       </div>
     </section>
 
@@ -59,11 +232,43 @@
         <a href="https://wa.me/5547992593526" target="_blank" class="botao">Fale no WhatsApp</a>
       </div>
     </section>
+
   </main>
 
-  <footer class="py-6 text-center text-sm">
-    <p>&copy; 2025 Suzena Pratas. Todos os direitos reservados.</p>
+  <footer class="bg-gray-900 py-10 text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h4 class="text-xl font-bold text-white mb-4">Suzena Pratas</h4>
+        <p class="text-sm">Sua paixão por pratas 925 com qualidade e atitude. Descubra a beleza que te representa.</p>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-bold text-white mb-4">Informações e Atendimento</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white">Política de Troca e Devoluções</a></li>
+          <li><a href="#" class="hover:text-white">Política de Privacidade</a></li>
+          <li><a href="#" class="hover:text-white">Formas de Pagamento</a></li>
+          <li><a href="#contato" class="hover:text-white">Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xl font-bold text-white mb-4">Conecte-se</h4>
+        <div class="flex space-x-4 text-2xl mb-4">
+          <a href="https://www.instagram.com/suzena_pratas" target="_blank" class="hover:text-white">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/5547992593526" target="_blank" class="hover:text-white">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+        <p class="text-sm">E-mail: suzenapratas@gmail.com <br> Telefone: (47) 99259-3526</p>
+      </div>
+    </div>
+    <div class="text-center mt-8 text-sm text-gray-500">
+      <p>&copy; 2025 Suzena Pratas. Todos os direitos reservados.</p>
+    </div>
   </footer>
 
 </body>
-</html>
+  </html>
