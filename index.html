@@ -1,430 +1,73 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suzena Pratas</title>
-  
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+  <title>Compra de Correntes Prata 925</title>
   <style>
-    /* ****************************************************
-       * IMPORTANTE: Para as fontes personalizadas funcionarem,
-       * você precisa ter os arquivos (Sticky Pops.otf, PunkRocker_S_Demo.otf)
-       * na mesma pasta do seu arquivo HTML.
-       * Considere converter para .woff e .woff2 para melhor performance web.
-       ****************************************************
-    */
-
-    /* Fonte Sticky Pops para nomes de produtos e contato */
-    @font-face {
-      font-family: 'Sticky Pops';
-      src: url('Sticky Pops.otf') format('opentype'); /* Use o nome exato do arquivo */
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    /* Fonte PunkRocker_S_Demo para títulos e números */
-    @font-face {
-      font-family: 'PunkRocker Demo'; /* Dando um nome mais simples para usar no CSS */
-      src: url('PunkRocker_S_Demo.otf') format('opentype'); /* Use o nome exato do arquivo */
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif; /* Usando uma fonte fallback geral, se as outras falharem */
-    }
-
-    /* Aplica PunkRocker_S_Demo para títulos */
-    h1, h2, h3, h4 {
-      font-family: 'PunkRocker Demo', Arial, sans-serif;
-    }
-
-    /* Aplica Sticky Pops para nomes de produtos e para a seção de contato */
-    .produto-card h4, /* Nome do produto no card */
-    #contato p,      /* Parágrafos de contato (telefone, instagram) */
-    #contato h3      /* Título da seção de contato */
-    {
-      font-family: 'Sticky Pops', Arial, sans-serif;
-    }
-
-    /* Estilos gerais */
-    header {
-      background-color: #111;
-    }
-    nav a {
-      color: #fff;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #ccc;
-    }
-    .produto-card, .categoria-card {
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      transition: transform 0.3s;
-    }
-    .produto-card:hover, .categoria-card:hover {
-      transform: scale(1.05);
-    }
-    .botao {
-      background-color: #fff;
-      color: #000;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 9999px;
-      transition: background 0.3s;
-    }
-    .botao:hover {
-      background-color: #ccc;
-    }
-    footer {
-      background-color: #111;
-      color: #888;
-    }
-    footer a {
-        color: #fff;
-        transition: color 0.3s;
-    }
-    footer a:hover {
-        color: #ccc;
-    }
-
-    /* Estilos para o novo banner principal */
-    .hero-section {
-      background-image: url('banner-principal.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      color: #fff;
-      position: relative;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Estilos para os depoimentos */
-    .depoimento-card {
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      padding: 24px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .depoimento-card p {
-      font-style: italic;
-      margin-bottom: 16px;
-      color: #ccc;
-    }
-    .depoimento-card .nome {
-      font-weight: bold;
-      color: #fff;
-    }
-
-    /* Estilos para o card de categoria */
-    .categoria-card {
-        padding: 16px;
-        border-radius: 8px;
-        text-align: center;
-    }
-    .categoria-card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 4px;
-        margin-bottom: 12px;
-    }
-    .categoria-card h4 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #fff;
-    }
-
-    /* Estilos para o Carrossel (Slider) */
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden; /* Garante que as imagens que não estão visíveis fiquem escondidas */
-      border-radius: 4px; /* Mantém o border-radius do card */
-      margin-bottom: 16px; /* Espaçamento entre a imagem e o título */
-    }
-
-    .carousel-images {
-      display: flex;
-      transition: transform 0.5s ease-in-out; /* Suaviza a transição das imagens */
-    }
-
-    .carousel-images img {
-      width: 100%;
-      height: 100%; /* Garante que a imagem ocupe 100% da altura do container */
-      object-fit: cover; /* Mantém a proporção da imagem e corta se necessário */
-      flex-shrink: 0; /* Impede que as imagens encolham */
-    }
-
-    .carousel-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 1.5rem;
-      z-index: 5; /* Garante que os botões fiquem acima das imagens */
-      border-radius: 50%;
-    }
-
-    .carousel-button.prev {
-      left: 10px;
-    }
-
-    .carousel-button.next {
-      right: 10px;
-    }
-
-    /* Estilo para o Anúncio de Oferta */
-    .oferta-banner {
-      background-color: #FF0000; /* Vermelho vibrante para chamar atenção */
-      color: #fff;
-      text-align: center;
-      padding: 10px 0;
-      font-weight: bold;
-      font-size: 1.5rem; /* Aumenta o tamanho da fonte */
-      position: relative; /* Para garantir que o z-index funcione se precisar */
-      z-index: 9; /* Acima de outros elementos, mas abaixo do header fixo se este tiver z-index maior */
-      margin-top: 80px; /* Para que apareça abaixo do header fixo (pt-24 no main) */
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+    label, input, select { margin: 10px 0; display: block; }
+    .produto { margin-bottom: 10px; }
+    #qrcode { margin-top: 20px; }
   </style>
-
-  <script>
-    // Função para inicializar o carrossel
-    function initCarousel(carouselId) {
-      const carouselContainer = document.getElementById(carouselId);
-      if (!carouselContainer) return; // Sai se o elemento não existir
-
-      const carouselImagesWrapper = carouselContainer.querySelector('.carousel-images');
-      const images = carouselImagesWrapper.querySelectorAll('img');
-      const prevButton = carouselContainer.querySelector('.carousel-button.prev');
-      const nextButton = carouselContainer.querySelector('.carousel-button.next');
-
-      let currentIndex = 0;
-      const totalImages = images.length;
-
-      // Se houver apenas uma imagem, esconde os botões de navegação
-      if (totalImages <= 1) {
-        if (prevButton) prevButton.style.display = 'none';
-        if (nextButton) nextButton.style.display = 'none';
-        return; // Sai da função se não precisar de carrossel
-      }
-
-      function updateCarousel() {
-        carouselImagesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-      }
-
-      if (prevButton) {
-        prevButton.addEventListener('click', () => {
-          currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
-          updateCarousel();
-        });
-      }
-
-      if (nextButton) {
-        nextButton.addEventListener('click', () => {
-          currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
-          updateCarousel();
-        });
-      }
-
-      // Opcional: Auto-play do carrossel (descomente se quiser)
-      // setInterval(() => {
-      //   currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
-      //   updateCarousel();
-      // }, 5000); // Muda a cada 5 segundos
-    }
-
-    // Inicializa os carrosséis quando a página carregar
-    document.addEventListener('DOMContentLoaded', () => {
-      initCarousel('grumetCarousel'); // ID do carrossel do primeiro produto (Grumet)
-      initCarousel('tresXumCarousel'); // ID do carrossel do segundo produto (3x1)
-    });
-  </script>
-
 </head>
 <body>
+  <h2>Loja Suzena Pratas</h2>
+  <form id="compraForm">
+    <label>Nome (da conta que fará o Pix):</label>
+    <input type="text" id="nome" required>
 
-  <header class="py-4 shadow-md fixed top-0 w-full z-10">
-    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Suzena Pratas</h1>
-      <nav class="space-x-6">
-        <a href="#home">Início</a>
-        <a href="#produtos">Produtos</a>
-        <a href="#categorias">Categorias</a>
-        <a href="#depoimentos">Depoimentos</a>
-        <a href="#contato">Contato</a>
-      </nav>
+    <div class="produto">
+      <label>Quantidade Cordão Grumet 3mm:</label>
+      <input type="number" id="grumet" value="0" min="0">
     </div>
-  </header>
 
-  <section class="oferta-banner" style="margin-top: 80px;">
-    <p>⚡️ OFERTA RELÂMPAGO: 2 PEÇAS POR R$79,99! ⚡️</p>
-  </section>
-  <main class="pt-0"> <section id="home" class="hero-section">
-      <div class="hero-overlay"></div>
-      <div class="hero-content text-center">
-        <h2 class="text-5xl md:text-6xl font-bold mb-4">Brilhe com Atitude!</h2>
-        <p class="text-xl md:text-2xl text-gray-200 mb-8">Descubra a coleção que redefine seu estilo.</p>
-        <a href="#produtos" class="botao text-lg md:text-xl">Explorar Produtos</a>
-      </div>
-    </section>
-
-    <section id="categorias" class="py-16 max-w-6xl mx-auto px-4">
-      <h3 class="text-4xl font-semibold mb-12 text-center">Nossas Categorias</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        <div class="categoria-card">
-          <img src="placeholder-aneis.jpg" alt="Anéis de Prata" class="w-full mb-4 rounded">
-          <h4 class="text-2xl font-bold mb-2">Anéis</h4>
-          <a href="#" class="botao text-sm">Ver Anéis</a>
-        </div>
-        <div class="categoria-card">
-          <img src="categoria-correntes.jpg" alt="Correntes de Prata" class="w-full mb-4 rounded">
-          <h4 class="text-2xl font-bold mb-2">Correntes</h4>
-          <a href="#" class="botao text-sm">Ver Correntes</a>
-        </div>
-        <div class="categoria-card">
-          <img src="placeholder-pulseiras.jpg" alt="Pulseiras de Prata" class="w-full mb-4 rounded">
-          <h4 class="text-2xl font-bold mb-2">Pulseiras</h4>
-          <a href="#" class="botao text-sm">Ver Pulseiras</a>
-        </div>
-        <div class="categoria-card">
-          <img src="placeholder-brincos.jpg" alt="Brincos de Prata" class="w-full mb-4 rounded">
-          <h4 class="text-2xl font-bold mb-2">Brincos</h4>
-          <a href="#" class="botao text-sm">Ver Brincos</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="produtos" class="py-16 max-w-6xl mx-auto px-4">
-      <h3 class="text-4xl font-semibold mb-12 text-center">Nossos Modelos</h3>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
-        <div class="produto-card p-6 rounded-lg">
-          <div id="grumetCarousel" class="carousel-container h-64"> <div class="carousel-images h-full">
-              <img src="IMG_20250614_144709_415.jpg" alt="Cordão Corrente 3mm Grumet - Vista Geral" class="w-full h-full object-cover">
-              <img src="IMG_20250614_144708_300.jpg" alt="Cordão Corrente 3mm Grumet - Detalhe Fecho" class="w-full h-full object-cover">
-            </div>
-            <button class="carousel-button prev">&#10094;</button> <button class="carousel-button next">&#10095;</button> </div>
-          <h4 class="text-2xl font-bold mb-2">Cordão Corrente 3mm Grumet</h4>
-          <p class="text-green-400 text-xl mb-4">R$ 54,00</p>
-          <a href="https://wa.me/p/10080488868695764/554792593526" target="_blank" class="botao">Comprar via WhatsApp</a>
-        </div>
-
-        <div class="produto-card p-6 rounded-lg">
-          <div id="tresXumCarousel" class="carousel-container h-64"> <div class="carousel-images h-full">
-              <img src="IMG_20250614_144705_740.jpg" alt="Cordão Corrente 3mm 3x1 - Vista Geral" class="w-full h-full object-cover">
-              <img src="IMG_20250614_144707_068.jpg" alt="Cordão Corrente 3mm 3x1 - Detalhe Fecho" class="w-full h-full object-cover">
-            </div>
-            <button class="carousel-button prev">&#10094;</button> <button class="carousel-button next">&#10095;</button> </div>
-          <h4 class="text-2xl font-bold mb-2">Cordão Corrente 3mm 3x1</h4>
-          <p class="text-green-400 text-xl mb-4">R$ 54,00</p>
-          <a href="https://wa.me/p/24065307006398897/554792593526" target="_blank" class="botao">Comprar via WhatsApp</a>
-        </div>
-      </div>
-
-      <div class="mt-16 text-center space-y-3 text-gray-400">
-        <p class="text-2xl">Anéis - <span class="text-red-500">Não temos no momento</span></p>
-        <p class="text-2xl">Pulseiras - <span class="text-red-500">Não temos no momento</span></p>
-        <p class="text-2xl">Brincos - <span class="text-red-500">Não temos no momento</span></p>
-      </div>
-    </section>
-
-    <section id="depoimentos" class="py-16 max-w-6xl mx-auto px-4">
-      <h3 class="text-4xl font-semibold mb-12 text-center">O que nossos clientes dizem</h3>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="depoimento-card">
-          <p>"Eu simplesmente amei meu colar de prata! O brilho é lindo e a qualidade é excelente. Sem falar no atendimento, que foi super atencioso. Com certeza vou comprar de novo!"</p>
-          <span class="nome">- Maria Fernanda - Blumenau/SC</span>
-        </div>
-
-        <div class="depoimento-card">
-          <p>"Estava procurando uma corrente de prata para presentear meu irmão e encontrei na Suzena Pratas. O produto chegou rápido, muito bem embalado e o acabamento é perfeito. Recomendo demais!"</p>
-          <span class="nome">- João Pedro - Indaial/SC</span>
-        </div>
-
-        <div class="depoimento-card">
-          <p>"Já comprei duas vezes com a Suzena e sempre fico encantada. As peças são delicadas e com ótimo preço. Além disso, o atendimento pelo WhatsApp foi super rápido e tiraram todas as minhas dúvidas."</p>
-          <span class="nome">- Camila Souza - Timbó/SC</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="contato" class="py-16 text-center">
-      <h3 class="text-4xl font-semibold mb-6">Contato</h3>
-      <p class="text-lg mb-2">📞 (47) 99259-3526</p>
-      <p class="text-lg mb-2">📸 Instagram: <a href="https://www.instagram.com/suzena_pratas" class="text-blue-400 hover:underline" target="_blank">@suzena_pratas</a></p>
-      <div class="mt-6">
-        <a href="https://wa.me/5547992593526" target="_blank" class="botao">Fale no WhatsApp</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="bg-gray-900 py-10 text-gray-400">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <h4 class="text-xl font-bold text-white mb-4">Suzena Pratas</h4>
-        <p class="text-sm">Sua paixão por pratas 925 com qualidade e atitude. Descubra a beleza que te representa.</p>
-      </div>
-
-      <div>
-        <h4 class="text-xl font-bold text-white mb-4">Informações e Atendimento</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:text-white">Política de Troca e Devoluções</a></li>
-          <li><a href="#" class="hover:text-white">Política de Privacidade</a></li>
-          <li><a href="#" class="hover:text-white">Formas de Pagamento</a></li>
-          <li><a href="#contato" class="hover:text-white">Fale Conosco</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-xl font-bold text-white mb-4">Conecte-se</h4>
-        <div class="flex space-x-4 text-2xl mb-4">
-          <a href="https://www.instagram.com/suzena_pratas" target="_blank" class="hover:text-white">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://wa.me/5547992593526" target="_blank" class="hover:text-white">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-        </div>
-        <p class="text-sm">E-mail: seu_email@example.com <br> Telefone: (47) 99259-3526</p>
-      </div>
+    <div class="produto">
+      <label>Quantidade Cordão 3x1 3mm:</label>
+      <input type="number" id="tresporum" value="0" min="0">
     </div>
-    <div class="text-center mt-8 text-sm text-gray-500">
-      <p>&copy; 2025 Suzena Pratas. Todos os direitos reservados.</p>
-    </div>
-  </footer>
 
+    <button type="submit">Gerar QR Code Pix</button>
+  </form>
+
+  <div id="resultado" style="display:none;">
+    <h3>Total: <span id="total"></span></h3>
+    <p>Escaneie o QR Code ou copie o código abaixo:</p>
+    <div id="qrcode"></div>
+    <p id="pixCode" style="word-break: break-all;"></p>
+    <p>Após o pagamento, envie o comprovante com seu nome para o WhatsApp: <strong><a href="https://wa.me/5547992593526" target="_blank">+55 (47) 99259-3526</a></strong></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    const chavePix = "14725810916";
+
+    function calcularPreco(qtde) {
+      const totalItens = qtde.grumet + qtde.tresporum;
+      const duplas = Math.floor(totalItens / 2);
+      const sobra = totalItens % 2;
+      return duplas * 79.99 + sobra * 54.00;
+    }
+
+    document.getElementById('compraForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const grumet = parseInt(document.getElementById('grumet').value);
+      const tresporum = parseInt(document.getElementById('tresporum').value);
+
+      const valor = calcularPreco({ grumet, tresporum }).toFixed(2);
+      const desc = `Compra de ${grumet}x Grumet e ${tresporum}x 3x1 por ${nome}`;
+
+      const payload = `00020126360014BR.GOV.BCB.PIX0114${chavePix}5204000053039865406${valor}5802BR5913Suzena Pratas6009SAO PAULO62140510Compra Pix6304`;
+
+      document.getElementById('total').innerText = `R$ ${valor}`;
+      document.getElementById('pixCode').innerText = payload;
+
+      QRCode.toCanvas(document.getElementById('qrcode'), payload, function (error) {
+        if (error) console.error(error);
+      });
+
+      document.getElementById('resultado').style.display = 'block';
+    });
+  </script>
 </body>
 </html>
